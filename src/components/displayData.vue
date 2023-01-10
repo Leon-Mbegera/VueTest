@@ -1,8 +1,20 @@
 <script setup>
 
-import { ref, onMounted } from "vue";
+import { ref } from "vue";
 
-const fetchedData = ref([]);
+const listUsers = ref([]);
+
+const getData = async () => {
+    const res = await fetch("https://reqres.in/api/users?page=2");
+    const finalRes = await res.json();
+    console.log(finalRes.data);
+    listUsers.value = finalRes.data;
+}
+
+}
+
+getData()
+
 </script>
 
 <template>
