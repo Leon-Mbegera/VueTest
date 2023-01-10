@@ -1,21 +1,21 @@
 <template>
-    <form>
+    <form @submit.prevent="onSubmit">
         <h2 class="form-heading">
             Please add details for the new user
         </h2>
         <div>
             <div>
-                <label for="new-email-input">Email:</label>
-                <input type="email" id="new-email-input" name="new-email" autocomplete="off" v-model="emailInput"
-                    class="input__lg" />
+                <label for="new-name-input">Name:</label>
+                <input type="text" id="new-name-input" name="new-name" autocomplete="off" v-model="nameInput"
+                    class="input__lg" required />
             </div>
             <div>
-                <label for="new-password-input">Password:</label>
-                <input type="text" id="new-password-input" name="new-password" autocomplete="off"
-                    v-model="passwordInput" class="input__lg" />
+                <label for="new-job-input">Job:</label>
+                <input type="text" id="new-job-input" name="new-job" autocomplete="off" v-model="jobInput"
+                    class="input__lg" required />
             </div>
         </div>
-        <button type="submit" @click="onSubmit">Add User</button>
+        <button type="submit">Create User</button>
     </form>
 
 </template>
@@ -24,24 +24,27 @@
 
 import { ref } from "vue";
 
-const emailInput = ref("")
-const passwordInput = ref("")
+const nameInput = ref("")
+const jobInput = ref("")
 
 const onSubmit = () => {
 
-    if (!emailInput.value || !passwordInput.value) return;
+    if (!nameInput.value || !jobInput.value) return;
 
-    fetch('https://reqres.in/api/register', {
+    fetch('https://reqres.in/api/users', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-            email: nameInput.value,
-            password: passwordInput.value
+            name: nameInput.value,
+            job: jobInput.value
         })
     })
         .then((response) => response.json())
-        .then((data) => console.log("post request data", data));
+        .then((data) => {
+            alert(`${data.name} has been created successfully!`)
+            console.log("post request data", data);
+        })
 }
 </script>

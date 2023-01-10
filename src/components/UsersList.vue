@@ -16,7 +16,7 @@
 import { ref } from "vue";
 
 const listUsers = ref([]);
-const pageNumber = ref(2)
+const pageNumber = ref(1)
 
 const getData = async () => {
     const res = await fetch(`https://reqres.in/api/users?page=${pageNumber.value}`);
