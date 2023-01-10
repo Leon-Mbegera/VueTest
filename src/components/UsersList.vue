@@ -30,7 +30,7 @@ getData()
 
 </script>
 
-<style>
+<style scoped>
 .users-wrapper {
     border: 2px solid red;
     padding: 5px;
