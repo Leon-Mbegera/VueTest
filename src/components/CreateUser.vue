@@ -27,9 +27,21 @@ import { ref } from "vue";
 const emailInput = ref("")
 const passwordInput = ref("")
 
+const onSubmit = () => {
 
+    if (!emailInput.value || !passwordInput.value) return;
 
-
-
-
+    fetch('https://reqres.in/api/register', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            email: nameInput.value,
+            password: passwordInput.value
+        })
+    })
+        .then((response) => response.json())
+        .then((data) => console.log("post request data", data));
+}
 </script>
