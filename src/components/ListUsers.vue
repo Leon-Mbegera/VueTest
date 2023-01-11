@@ -6,6 +6,8 @@
                 <p>{{ user.email }}</p>
             </div>
             <img src="../assets/logo.png" alt="user-image" />
+            <img src={{user.avatar}} alt="user-image" />
+
         </div>
     </div>
 </template>
