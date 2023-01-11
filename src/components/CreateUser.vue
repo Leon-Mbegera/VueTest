@@ -1,23 +1,19 @@
 <template>
-    <form @submit.prevent="onSubmit">
+    <div id=form-wrapper>
         <h2 class="form-heading">
             Please add details for the new user
         </h2>
-        <div>
-            <div>
-                <label for="new-name-input">Name:</label>
-                <input type="text" id="new-name-input" name="new-name" autocomplete="off" v-model="nameInput"
-                    class="input__lg" required />
-            </div>
-            <div>
-                <label for="new-job-input">Job:</label>
-                <input type="text" id="new-job-input" name="new-job" autocomplete="off" v-model="jobInput"
-                    class="input__lg" required />
-            </div>
-        </div>
-        <button type="submit">Create User</button>
-    </form>
+        <form @submit.prevent="onSubmit">
 
+            <label for="new-name-input">Name:</label>
+            <input type="text" id="new-name-input" name="new-name" autocomplete="off" v-model="nameInput"
+                class="input__lg p" required placeholder="Your name..." />
+            <label for="new-job-input">Job:</label>
+            <input type="text" id="new-job-input" name="new-job" autocomplete="off" v-model="jobInput" class="input__lg"
+                required placeholder="job title..." />
+            <input type="submit" value="Create User" />
+        </form>
+    </div>
 </template>
 
 <script setup>
@@ -48,3 +44,43 @@ const onSubmit = () => {
         })
 }
 </script>
+
+<style scoped>
+#form-wrapper {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.form-heading {
+    margin: 20px auto;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0 auto;
+}
+
+input[type=text] {
+    width: 600px;
+    padding: 12px 20px;
+    margin: 12px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=submit] {
+    width: 600px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 18px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+</style>

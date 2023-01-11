@@ -1,23 +1,31 @@
 <template>
     <div class="users-wrapper">
         <div v-for="user in listUsers" :key="user.id" class="user-wrapper">
-            <div>
-                <p>{{ user.first_name }} {{ user.last_name }}</p>
-                <p>{{ user.email }}</p>
+            <div class="details-box">
+                <div class="user-names">
+                    <p>{{ user.first_name }} {{ user.last_name }}</p>
+                    <p>{{ user.email }}</p>
+                </div>
+                <div>
+                    <img :src="user.avatar" alt="user-image" />
+                </div>
             </div>
-            <img src="../assets/logo.png" alt="user-image" />
-            <router-link :to="{ name: 'UserDetails', params: { id: user.id } }">Update User</router-link>
+            <button class="details-btn">
+                <router-link :to="{ name: 'UserDetails', params: { id: user.id } }" class="router-link">Update
+                    User</router-link>
+            </button>
         </div>
     </div>
     <div>
-        <button v-if="paginate" @click="toggler" class="btn">Previous</button>
-        <button v-else @click="toggler" class="btn">Next</button>
+        <button v-if="paginate" @click="toggler" class="update-btn">Previous</button>
+        <button v-else @click="toggler" class="update-btn">Next</button>
     </div>
 </template>
 
 
 <script setup>
 import { ref, watch } from "vue";
+
 
 const listUsers = ref([]);
 const pageNumber = ref(1)
@@ -56,23 +64,58 @@ watch(paginate, () => {
 
 <style scoped>
 .users-wrapper {
-    border: 2px solid red;
     padding: 5px;
     display: grid;
     grid-template-rows: auto auto;
     grid-template-columns: auto auto auto;
     row-gap: 30px;
+    column-gap: 10px;
 }
 
 .user-wrapper {
     width: 420px;
+    height: 240px;
     border: 2px solid #2c3e50;
     border-radius: 5px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    padding: 0;
+
 }
 
-.btn {
-    color: blue;
+.details-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.details-btn {
+    padding: 10px;
+    background-color: #41B883;
+    border: none;
+    margin-bottom: 0;
+}
+
+.router-link {
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 16px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif
+}
+
+.update-btn {
+    padding: 10px;
+    width: 165px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    background: crimson;
+}
+
+.user-name {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight: 500;
 }
 </style>

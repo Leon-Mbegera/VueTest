@@ -1,6 +1,6 @@
 <template>
   <div id="nav-header">
-    <router-link to="/">Our Users</router-link> |
+    <router-link to="/">Our Users</router-link>
     <router-link :to="{ name: 'CreateUser' }">Create New User</router-link>
   </div>
   <router-view />
@@ -22,7 +22,9 @@ export default {
 }
 
 #nav-header {
-  padding: 30px 0;
+  padding: 15px 0;
+  display: flex;
+  justify-content: center;
 }
 
 #nav-header a {
