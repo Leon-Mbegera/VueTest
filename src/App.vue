@@ -1,16 +1,16 @@
 <template>
-  <!-- <UsersList /> -->
+  <!-- <ListUsers /> -->
   <CreateUser />
 </template>
 
 <script>
-// import UsersList from './components/UsersList.vue'
+// import ListUsers from './components/ListUsers.vue'
 import CreateUser from './components/CreateUser.vue';
 
 export default {
   name: 'App',
   components: {
-    // UsersList,
+    // ListUsers,
     CreateUser
   }
 }
