@@ -62,7 +62,7 @@ export default {
             })
                 .then((response) => response.json())
                 .then((data) => {
-                    alert(`${data.name} has been created successfully!`)
+                    alert(`${data.name} has been updated successfully!`)
                     console.log("put request data", data);
                 })
 
