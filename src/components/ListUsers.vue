@@ -6,8 +6,7 @@
                 <p>{{ user.email }}</p>
             </div>
             <img src="../assets/logo.png" alt="user-image" />
-            <img src={{user.avatar}} alt="user-image" />
-
+            <router-link :to="{ name: 'UserDetails', params: { id: user.id } }">Update User</router-link>
         </div>
     </div>
 </template>
