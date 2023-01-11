@@ -18,6 +18,23 @@ export default {
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   color: #2c3e50;
-  margin: 40px 30px;
+  margin: 0 30px 30px 30px;
+}
+
+#nav-header {
+  padding: 30px 0;
+}
+
+#nav-header a {
+  font-weight: bold;
+  color: #2c3e50;
+  padding: 10px;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+#nav-header a.router-link-exact-active {
+  background: crimson;
+  color: white;
 }
 </style>
