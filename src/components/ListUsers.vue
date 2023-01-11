@@ -9,25 +9,48 @@
             <router-link :to="{ name: 'UserDetails', params: { id: user.id } }">Update User</router-link>
         </div>
     </div>
+    <div>
+        <button v-if="paginate" @click="toggler" class="btn">Previous</button>
+        <button v-else @click="toggler" class="btn">Next</button>
+    </div>
 </template>
 
 
 <script setup>
-
-import { ref } from "vue";
+import { ref, watch } from "vue";
 
 const listUsers = ref([]);
 const pageNumber = ref(1)
+const paginate = ref(false);
 
 const getData = async () => {
+    console.log(pageNumber.value)
     const res = await fetch(`https://reqres.in/api/users?page=${pageNumber.value}`);
     const finalRes = await res.json();
     console.log(finalRes.data);
     listUsers.value = finalRes.data;
 }
 
+const toggler = () => {
+
+    if (!paginate.value) {
+        pageNumber.value++;
+        paginate.value = !paginate.value;
+
+    } else {
+        paginate.value = !paginate.value;
+        pageNumber.value--
+
+    }
+}
 
 getData()
+
+watch(paginate, () => {
+    getData();
+})
+
+
 
 </script>
 
@@ -47,5 +70,9 @@ getData()
     border-radius: 5px;
     display: flex;
     justify-content: center;
+}
+
+.btn {
+    color: blue;
 }
 </style>

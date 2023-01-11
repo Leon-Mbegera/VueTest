@@ -2,7 +2,7 @@
     <h1>User Details Page</h1>
     <form @submit.prevent="putUserDetails">
         <h2 class="form-heading">
-            Here you may edit the user details
+            Please edit only the first name, last name and job fields !
         </h2>
         <div>
             <div>
@@ -53,7 +53,6 @@ export default {
             this.firstName = finalRes.data.first_name;
             this.lastName = finalRes.data.last_name;
             this.emailInput = finalRes.data.email
-
         },
 
         async putUserDetails() {
