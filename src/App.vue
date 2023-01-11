@@ -1,18 +1,16 @@
 <template>
-  <!-- <ListUsers /> -->
-  <CreateUser />
+  <div id="nav-header">
+    <router-link to="/">Our Users</router-link> |
+    <router-link :to="{ name: 'CreateUser' }">Create New User</router-link>
+  </div>
+  <router-view />
 </template>
 
 <script>
-// import ListUsers from './components/ListUsers.vue'
-import CreateUser from './components/CreateUser.vue';
+
 
 export default {
   name: 'App',
-  components: {
-    // ListUsers,
-    CreateUser
-  }
 }
 </script>
 
