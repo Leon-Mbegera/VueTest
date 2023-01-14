@@ -26,14 +26,16 @@
 <script setup>
 import { ref, watch } from "vue";
 
-
 const listUsers = ref([]);
-const pageNumber = ref(1)
-const paginate = ref(false);
+const paginate = ref(false)
+
+
+const stateProperties = {
+    pageNumber: ref(1),
+}
 
 const getData = async () => {
-    console.log(pageNumber.value)
-    const res = await fetch(`https://reqres.in/api/users?page=${pageNumber.value}`);
+    const res = await fetch(`https://reqres.in/api/users?page=${stateProperties.pageNumber.value}`);
     const finalRes = await res.json();
     console.log(finalRes.data);
     listUsers.value = finalRes.data;
@@ -42,12 +44,12 @@ const getData = async () => {
 const toggler = () => {
 
     if (!paginate.value) {
-        pageNumber.value++;
+        stateProperties.pageNumber.value++;
         paginate.value = !paginate.value;
 
     } else {
         paginate.value = !paginate.value;
-        pageNumber.value--
+        stateProperties.pageNumber.value--
 
     }
 }
