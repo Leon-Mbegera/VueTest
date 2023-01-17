@@ -55,8 +55,6 @@ const toggler = () => {
     }
 }
 
-// getData()
-
 watch(paginate, () => {
     getData();
 }, { immediate: true })
