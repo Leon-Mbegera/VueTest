@@ -24,7 +24,7 @@
 
 
 <script setup>
-import { ref, watch } from "vue";
+import { ref, watchEffect } from "vue";
 
 const listUsers = ref([]);
 const paginate = ref(false)
@@ -35,12 +35,12 @@ const stateProperties = {
 }
 
 
-const getData = async () => {
-    const res = await fetch(`https://reqres.in/api/users?page=${stateProperties.pageNumber.value}`);
-    const finalRes = await res.json();
-    console.log(finalRes.data);
-    listUsers.value = finalRes.data;
-}
+// const getData = async () => {
+//     const res = await fetch(`https://reqres.in/api/users?page=${stateProperties.pageNumber.value}`);
+//     const finalRes = await res.json();
+//     console.log(finalRes.data);
+//     listUsers.value = finalRes.data;
+// }
 
 const toggler = () => {
 
@@ -55,8 +55,15 @@ const toggler = () => {
     }
 }
 
-watch(paginate, () => {
-    getData();
+// watch(paginate, () => {
+//     getData();
+// }, { immediate: true })
+
+watchEffect(async () => {
+    const res = await fetch(`https://reqres.in/api/users?page=${stateProperties.pageNumber.value}`);
+    const finalRes = await res.json();
+    console.log(finalRes.data);
+    listUsers.value = finalRes.data;
 }, { immediate: true })
 
 
