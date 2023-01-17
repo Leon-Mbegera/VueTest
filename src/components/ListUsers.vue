@@ -34,6 +34,7 @@ const stateProperties = {
     pageNumber: ref(1),
 }
 
+
 const getData = async () => {
     const res = await fetch(`https://reqres.in/api/users?page=${stateProperties.pageNumber.value}`);
     const finalRes = await res.json();
@@ -54,11 +55,11 @@ const toggler = () => {
     }
 }
 
-getData()
+// getData()
 
 watch(paginate, () => {
     getData();
-})
+}, { immediate: true })
 
 
 
