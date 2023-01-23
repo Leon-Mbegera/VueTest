@@ -66,7 +66,7 @@ watchEffect(async () => {
     const finalRes = await res.json();
     console.log(finalRes.data);
     listUsers.value = finalRes.data;
-}, { immediate: true })
+})
 
 
 

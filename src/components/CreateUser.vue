@@ -6,6 +6,7 @@
         <form @submit.prevent="onSubmit">
 
             <label for="new-name-input">Name:</label>
+            {{ console.log(computedName) }}
             <input type="text" id="new-name-input" name="new-name" autocomplete="off" v-model="computedName"
                 class="input__lg p" required placeholder="Your name..." />
             <label for="new-job-input">Job:</label>
@@ -24,6 +25,7 @@ const nameInput = ref("");
 const jobInput = ref("");
 
 const computedName = computed(() => {
+
     return nameInput.value.trim();
 });
 
