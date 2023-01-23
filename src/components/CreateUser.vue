@@ -6,12 +6,11 @@
         <form @submit.prevent="onSubmit">
 
             <label for="new-name-input">Name:</label>
-            {{ console.log(computedName) }}
-            <input type="text" id="new-name-input" name="new-name" autocomplete="off" v-model="computedName"
+            <input type="text" id="new-name-input" name="new-name" autocomplete="off" v-model="nameInput"
                 class="input__lg p" required placeholder="Your name..." />
             <label for="new-job-input">Job:</label>
-            <input type="text" id="new-job-input" name="new-job" autocomplete="off" v-model="computedJob"
-                class="input__lg" required placeholder="job title..." />
+            <input type="text" id="new-job-input" name="new-job" autocomplete="off" v-model="jobInput" class="input__lg"
+                required placeholder="job title..." />
             <input type="submit" value="Create User" />
         </form>
     </div>
@@ -19,17 +18,10 @@
 
 <script setup>
 
-import { ref, computed } from "vue";
+import { ref } from "vue";
 
 const nameInput = ref("");
 const jobInput = ref("");
-
-const computedName = computed(() => {
-
-    return nameInput.value.trim();
-});
-
-const computedJob = computed(() => jobInput.value.trim());
 
 const onSubmit = () => {
 
