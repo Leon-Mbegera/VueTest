@@ -1,9 +1,9 @@
+import { defineAsyncComponent } from "vue";
 import { createRouter, createWebHistory } from "vue-router";
 
-import ListUsers from "../components/ListUsers";
-import CreateUser from "../components/CreateUser";
-import UserDetails from "../components/UserDetails";
-
+const ListUsers = defineAsyncComponent(() => import("../components/ListUsers"));
+const CreateUser = defineAsyncComponent(() => import("../components/CreateUser"));
+const UserDetails = defineAsyncComponent(() => import("../components/UserDetails"));
 
 const routes = [
     {

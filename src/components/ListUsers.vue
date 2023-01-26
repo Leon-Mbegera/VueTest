@@ -24,13 +24,11 @@
 
 
 <script setup>
+
 import { ref, watchEffect } from "vue";
-
-
 
 const listUsers = ref([]);
 const paginate = ref(false)
-
 
 const stateProperties = {
     pageNumber: ref(1),
@@ -67,8 +65,6 @@ watchEffect(async () => {
     console.log(finalRes.data);
     listUsers.value = finalRes.data;
 })
-
-
 
 </script>
 
