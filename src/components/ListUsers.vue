@@ -11,7 +11,7 @@
                 </div>
             </div>
             <button class="details-btn">
-                <router-link :to="{ name: 'UserDetails', params: { id: user.id } }" class="router-link">Update
+                <router-link :to="{ name: 'UpdateUser', params: { id: user.id } }" class="router-link">Update
                     User</router-link>
             </button>
         </div>

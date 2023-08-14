@@ -1,10 +1,9 @@
-import { defineAsyncComponent } from "vue";
 import { createRouter, createWebHistory } from "vue-router";
 import ListUsers from "../components/ListUsers.vue";
 
-const CreateUser = defineAsyncComponent(() => import("../components/CreateUser"));
-const UserDetails = defineAsyncComponent(() => import("../components/UserDetails"));
-
+const CreateUser = () => import("../components/CreateUser");
+// const UserDetails = defineAsyncComponent(() => import("../components/UserDetails"));
+const UpdateUser = () => import("../components/UpdateUser");
 const routes = [
     {
         path: "/",
@@ -18,8 +17,8 @@ const routes = [
     },
     {
         path: "/users/:id",
-        name: "UserDetails",
-        component: UserDetails
+        name: "UpdateUser",
+        component: UpdateUser
     }
 
 ]

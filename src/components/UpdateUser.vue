@@ -21,56 +21,50 @@
     </div>
 </template>
 
-<script>
+<script setup>
 
-export default {
-    data() {
-        return {
-            userId: this.$route.params.id,
-            nameInput: "",
-            firstName: "",
-            lastName: "",
-            jobInput: "",
-            emailInput: ""
-        }
-    },
-    methods: {
-        async getUserDetails() {
-            console.log("user id", this.userId);
-            const res = await fetch(`https://reqres.in/api/users/${this.userId}`);
-            const finalRes = await res.json();
-            console.log(finalRes.data);
-            this.firstName = finalRes.data.first_name;
-            this.lastName = finalRes.data.last_name;
-            this.emailInput = finalRes.data.email
-        },
+import { ref, watchEffect } from 'vue';
+import { useRoute } from 'vue-router';
 
-        async putUserDetails() {
+const userId = ref(useRoute().params.id);
+const firstName = ref('');
+const lastName = ref('');
+const jobInput = ref('');
+const emailInput = ref('');
 
-            if (!this.firstName || !this.lastName || !this.jobInput) return;
-
-            fetch(`https://reqres.in/api/users/${this.userId}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    name: this.firstName.trim() + " " + this.lastName.trim(),
-                    job: this.jobInput
-                })
-            })
-                .then((response) => response.json())
-                .then((data) => {
-                    alert(`${data.name} has been updated successfully!`)
-                    console.log("put request data", data);
-                })
-
-        }
-    },
-    mounted() {
-        this.getUserDetails()
-    }
+async function getUserDetails() {
+    console.log("user id", userId.value);
+    const res = await fetch(`https://reqres.in/api/users/${userId.value}`);
+    const finalRes = await res.json();
+    console.log(finalRes.data);
+    firstName.value = finalRes.data.first_name;
+    lastName.value = finalRes.data.last_name;
+    emailInput.value = finalRes.data.email;
 }
+
+async function putUserDetails() {
+
+if (!firstName.value || !lastName.value || !jobInput.value) return;
+
+fetch(`https://reqres.in/api/users/${userId.value}`, {
+    method: 'PUT',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+        name: firstName.value.trim() + " " + lastName.value.trim(),
+        job: jobInput.value
+    })
+})
+    .then((response) => response.json())
+    .then((data) => {
+        alert(`${data.name} has been updated successfully!`)
+        console.log("put request data", data);
+    })
+}
+
+watchEffect(getUserDetails());
+
 
 </script>
 
