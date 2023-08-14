@@ -70,6 +70,7 @@ watchEffect(async () => {
 
 <style scoped>
 .users-wrapper {
+    width: 100%;
     padding: 5px;
     display: grid;
     grid-template-rows: auto auto;
@@ -79,7 +80,7 @@ watchEffect(async () => {
 }
 
 .user-wrapper {
-    width: 420px;
+    width: auto;
     height: 240px;
     border: 2px solid #2c3e50;
     border-radius: 5px;
