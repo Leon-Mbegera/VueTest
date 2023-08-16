@@ -1,6 +1,6 @@
 <template>
     <div class="users-wrapper">
-        <div v-for="user in listUsers" :key="user.id" class="user-wrapper">
+        <div v-for="(user, index) in listUsers" :key="index" class="user-wrapper">
             <div class="details-box">
                 <div class="user-names">
                     <p>{{ user.first_name }} {{ user.last_name }}</p>
